@@ -6,7 +6,7 @@ import openai
 # APIキーの設定
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
-
+'''
 print("----------")
 response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -153,3 +153,100 @@ print(result_3)
 
 また、大谷は通算でアメリカンリーグの選手として、1試合18三振を記録するなど、数々の個人記録を持っています。彼の実績は日本のプロ野球界やメジャーリーグでも非常に注目されており、野球ファンから高く評価されています。
 """
+'''
+
+'''
+prompt = """
+    社会人がビジネスで通用する英語力を身につける方法を日本語で教えてください
+    Thought :
+    Action :
+    Observation :
+"""
+
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content":prompt}
+    ],
+)
+print(prompt)
+print(response)
+result = response.choices[0]["message"]["content"].strip()
+print(result)
+'''
+
+'''
+prompt = """
+    次の問いに回答してください。
+    回答はステップごとに分けてください。
+    Q：次のグループの奇数を足し合わせると偶数になりますか？：5, 30, 25, 11, 82, 17, 9
+"""
+
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content":prompt}
+    ],
+    temperature=0
+)
+print(prompt)
+print(response)
+result = response.choices[0]["message"]["content"].strip()
+print(result)
+'''
+
+'''
+prompt = """
+    自然文を入力しますので、文章の中からCATEGORY, BRAND, SPECに該当する文字列を抜き出してください。
+    以下のような例の出力をしてください。
+    例：
+    「東芝のエアコンが欲しい」：{"CATEGORY":"エアコン", "BRAND":"東芝"}
+    「最新の128GBのiPhoneが欲しい」：{"SPEC":"128GB", "BRAND":"iPhone"}
+    「三菱の両開きの冷蔵庫を探している」：{"CATEGORY":"冷蔵庫", "SPEC":"両開き", "BRAND":"三菱"}
+
+    質問：
+    「Microsoftのパソコンでメモリが1Tのものを探している」：
+"""
+
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content":prompt}
+    ],
+    temperature=0
+)
+print(prompt)
+print(response)
+result = response.choices[0]["message"]["content"].strip()
+print(result)
+'''
+
+prompt = """
+    単位付きの数値を入力しますので、以下の範囲のどれに最も該当するか教えてください。
+
+    候補：
+    ・〜100ml
+    ・100ml〜150ml
+    ・150ml〜
+    ・3キログラム未満
+    ・3キログラム以上5キログラム未満
+    ・5キログラム以上
+
+    解答例：
+    ・120ml → {"label": "100ml〜150ml"}
+
+    入力：
+    ・2リットル
+"""
+
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content":prompt}
+    ],
+    temperature=0
+)
+print(prompt)
+print(response)
+result = response.choices[0]["message"]["content"].strip()
+print(result)
